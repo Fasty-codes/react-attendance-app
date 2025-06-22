@@ -1,0 +1,42 @@
+.app-layout {
+  display: flex;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-left: 260px; /* Same as sidebar width */
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content.collapsed {
+  margin-left: 88px; /* Same as collapsed sidebar width */
+}
+
+.page-content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: var(--primary-bg);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 88px; /* Always collapsed on mobile */
+  }
+
+  .main-content:not(.collapsed) {
+    /* When sidebar is programmatically open on mobile, maybe overlay? */
+    /* For now, we'll just keep it pushed */
+  }
+
+  .page-content {
+    padding: 1.5rem;
+  }
+} 

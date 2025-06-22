@@ -1,0 +1,51 @@
+.report-card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: box-shadow 0.2s;
+}
+
+.report-card:hover {
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.report-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.report-card-header h4 {
+  margin: 0;
+  color: var(--primary-text);
+}
+
+.report-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.view-btn { background-color: #3b82f6; } /* Blue */
+.edit-btn { background-color: #f97316; } /* Orange */
+.delete-btn { background-color: #ef4444; } /* Red */
+
+.report-card-body {
+  padding: 15px;
+  color: var(--secondary-text);
+}
+
+.report-card-body p {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+} 

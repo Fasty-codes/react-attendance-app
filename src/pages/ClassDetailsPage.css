@@ -1,0 +1,289 @@
+.class-details-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.class-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.start-day-btn {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+/* --- Tabs --- */
+.class-details-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.class-details-tabs button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--secondary-text);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.class-details-tabs button.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+/* --- Student Management --- */
+.student-list-container,
+.attendance-history-section {
+  background-color: var(--secondary-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.student-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.student-list-header h2 {
+  margin: 0;
+  color: var(--primary-text);
+}
+
+.add-student-main-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.student-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-list-table th,
+.student-list-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+  color: var(--secondary-text);
+}
+
+.student-list-table th {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+.student-list-table tr:last-child td {
+  border-bottom: none;
+}
+
+.student-list-table td:last-child {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-student-btn {
+  background: none;
+  border: none;
+  color: #3b82f6; /* Blue */
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.remove-student-btn {
+  background: none;
+  border: none;
+  color: #ef4444; /* Red */
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* --- Attendance History --- */
+.history-search-bar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.history-list-item {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.history-list-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: var(--primary-color);
+}
+
+.history-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-item-info strong {
+  font-size: 1.1rem;
+  color: var(--primary-text);
+  margin-bottom: 0.25rem;
+}
+
+.history-item-info span {
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+.history-item-stats {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.history-item-stats div {
+  text-align: center;
+}
+
+.history-item-stats .stat-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.history-item-stats .stat-label {
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+}
+
+.holiday-item {
+  background-color: #eef7ff;
+  border-left: 5px solid #6c757d;
+  cursor: default;
+}
+
+.holiday-item:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.holiday-item .holiday-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #343a40;
+}
+
+/* --- Session Modal --- */
+.session-select-modal h2 {
+  margin-top: 0;
+  text-align: center;
+  color: var(--primary-text);
+}
+
+.session-select-modal p {
+  text-align: center;
+  color: var(--secondary-text);
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.session-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.session-options button {
+  padding: 15px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+}
+
+.session-options button:hover {
+    background-color: var(--primary-bg);
+    border-color: var(--accent-color);
+}
+
+.session-options button .bx {
+  font-size: 2rem;
+}
+
+.session-options button.holiday-btn {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+}
+.session-options button.holiday-btn:hover {
+  background-color: #d97706;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.history-table .clickable {
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.history-table .clickable:hover {
+  background-color: var(--primary-bg);
+}
+
+.timetable-section {
+  background-color: var(--secondary-bg);
+}

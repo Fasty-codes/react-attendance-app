@@ -1,0 +1,21 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "my_timetable": "My Timetable",
+    "reports": "Reports",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}!",
+    "welcome_subtitle": "Here is your dashboard for today.",
+    "add_class_placeholder": "New Class Name",
+    "add_class_button": "Add Class",
+    "students": "Students",
+    "view_class": "View Class",
+    "delete_class_title": "Delete Class",
+    "delete_class_message": "Are you sure you want to delete this class? This will also delete all associated student and attendance data. This action cannot be undone.",
+    "delete": "Delete"
+  }
+} 

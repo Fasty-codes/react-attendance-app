@@ -1,0 +1,21 @@
+{
+  "sidebar": {
+    "dashboard": "डैशबोर्ड",
+    "my_timetable": "मेरी समय सारिणी",
+    "reports": "रिपोर्ट",
+    "settings": "सेटिंग्स",
+    "profile": "प्रोफ़ाइल",
+    "logout": "लॉग आउट"
+  },
+  "dashboard": {
+    "welcome": "स्वागत है, {{name}}!",
+    "welcome_subtitle": "आज के लिए आपका डैशबोर्ड यहाँ है।",
+    "add_class_placeholder": "नई कक्षा का नाम",
+    "add_class_button": "कक्षा जोड़ें",
+    "students": "छात्र",
+    "view_class": "कक्षा देखें",
+    "delete_class_title": "कक्षा हटाएं",
+    "delete_class_message": "क्या आप वाकई इस कक्षा को हटाना चाहते हैं? इससे सभी संबंधित छात्र और उपस्थिति डेटा भी हट जाएगा। इस कार्रवाई को पूर्ववत नहीं किया जा सकता है।",
+    "delete": "हटाएं"
+  }
+} 

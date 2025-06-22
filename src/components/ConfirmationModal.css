@@ -1,0 +1,39 @@
+.confirmation-modal {
+  padding: 20px;
+  text-align: center;
+}
+
+.confirmation-modal h3 {
+  margin-top: 0;
+  color: var(--primary-text);
+}
+
+.confirmation-modal p {
+  color: var(--secondary-text);
+  margin-bottom: 25px;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirmation-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--border-color);
+}
+
+.btn-confirm {
+  background-color: #dc2626; /* Red for destructive actions */
+  color: white;
+} 

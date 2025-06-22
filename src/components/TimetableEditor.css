@@ -1,0 +1,131 @@
+.timetable-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.day-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background-color: #e5e7eb;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.day-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.day-btn.active {
+  background-color: #ffffff;
+  color: #4f46e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.timetable-editor {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable-table th, .timetable-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.timetable-table th {
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.timetable-table td {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.timetable-table input[type="text"],
+.timetable-table input[type="time"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.timetable-table input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.remove-period-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.remove-period-btn:hover {
+  opacity: 1;
+}
+
+.add-period-btn {
+  margin-top: 15px;
+}
+
+.timetable-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.add-period-btn, .save-timetable-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.save-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.saved-message {
+  color: var(--success-color);
+  font-weight: bold;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+} 

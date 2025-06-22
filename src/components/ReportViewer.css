@@ -1,0 +1,148 @@
+.report-viewer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.report-viewer-content {
+  background-color: var(--primary-bg);
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.report-sheet {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  padding: 40px;
+  border-radius: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  border: 1px solid var(--border-color);
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid var(--primary-text);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.school-logo {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.school-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.school-info p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.report-sheet h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+.student-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.student-details-grid p {
+  margin: 0;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.grades-table th, .grades-table td {
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  text-align: left;
+}
+
+.grades-table th {
+  background-color: var(--primary-bg);
+}
+
+.summary-section, .remarks-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.remarks-section p {
+  white-space: pre-wrap;
+}
+
+.report-viewer-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.report-viewer-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.download-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.print-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.close-btn {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--border-color);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .report-sheet, .report-sheet * {
+    visibility: visible;
+  }
+  .report-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: white !important;
+    color: black !important;
+    --primary-text: black !important;
+    --border-color: #ccc !important;
+    --primary-bg: #f2f2f2 !important;
+  }
+} 

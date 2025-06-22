@@ -1,0 +1,203 @@
+.settings-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.settings-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--primary-text);
+}
+
+.settings-card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.settings-card h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: var(--primary-text);
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.settings-card p {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: var(--secondary-text);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--primary-text);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color-light);
+}
+
+.form-group textarea::placeholder {
+  color: var(--secondary-text);
+  font-style: italic;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo-preview {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 15px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.save-settings-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.save-settings-btn:hover {
+  background-color: var(--accent-color-dark);
+}
+
+.danger-zone {
+  border-color: var(--danger-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.danger-zone h2 {
+  color: var(--danger-color);
+}
+
+.clear-data-btn {
+  background-color: var(--danger-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-color);
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 28px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.setting-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .settings-card {
+    padding: 20px;
+  }
+
+  .setting-toggle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .setting-toggle .switch {
+    margin-top: 10px;
+  }
+} 

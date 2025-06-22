@@ -1,0 +1,100 @@
+.student-edit-modal .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.student-edit-modal .full-width {
+  grid-column: 1 / -1;
+}
+
+.student-edit-modal .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-edit-modal label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.student-edit-modal input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.student-edit-modal .photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.student-edit-modal .photo-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.student-edit-modal .photo-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.student-edit-modal .photo-actions .button-like,
+.student-edit-modal .photo-actions button {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  color: var(--primary-text);
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.student-edit-modal .photo-actions .button-like:hover,
+.student-edit-modal .photo-actions button:hover {
+  background-color: var(--accent-color-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.student-edit-modal .camera-view {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.student-edit-modal .modal-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.student-edit-modal .modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.student-edit-modal .save-btn {
+  background-color: #4f46e5;
+  color: white;
+} 
