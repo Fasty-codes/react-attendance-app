@@ -18,7 +18,9 @@ const Header = ({ toggleSidebar }) => {
       </div>
       <div className="header-right">
         <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'light' ? <i className='bx bxs-moon'></i> : <i className='bx bxs-sun'></i>}
+          <span className="theme-toggle-icon">
+            {theme === 'light' ? <i className='bx bxs-moon'></i> : <i className='bx bxs-sun'></i>}
+          </span>
         </button>
         <Link to="/profile" className="user-profile-link">
           <div className="user-profile">

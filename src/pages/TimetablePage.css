@@ -1,111 +1,282 @@
-.timetable-page-container {
-  padding: 20px;
-  animation: fadeIn 0.5s ease-in-out;
+.timetable-page {
+    padding: 20px;
+    background-color: #f4f7fc;
+    color: #333;
 }
 
-.timetable-page-container h1 {
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: 10px;
-  color: var(--primary-text);
+.timetable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.timetable-page-container > p {
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--secondary-text);
+.timetable-header h1 {
+    font-size: 2rem;
+    color: #333;
 }
 
-.info-box {
-  background-color: var(--accent-color-light);
-  color: var(--accent-color-dark);
-  border: 1px solid var(--accent-color);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 0 auto 25px auto;
-  max-width: 800px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 0.95rem;
+.edit-timetable-btn, .back-to-class-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-.info-box i {
-  font-size: 1.5rem;
+.edit-timetable-btn:hover, .back-to-class-btn:hover {
+    background-color: #0056b3;
 }
 
-.weekly-view {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+.back-to-class-btn {
+    margin-top: 20px;
+    background-color: #6c757d;
 }
 
-.day-column {
-  background-color: var(--secondary-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 15px;
+.back-to-class-btn:hover {
+    background-color: #5a6268;
 }
 
-.day-column h3 {
-  margin-top: 0;
-  text-align: center;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+.timetable-container {
+    overflow-x: auto;
 }
 
-.periods-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 50px; /* Ensures column has height even if empty */
+.timetable-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
 }
 
-.period-card {
-  background-color: var(--primary-bg);
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid var(--accent-color);
+.timetable-table th,
+.timetable-table td {
+    border: 1px solid #e3e6f0;
+    padding: 10px 6px;
+    text-align: center;
+    min-width: 110px;
+    background: #f9fafc;
+    transition: background 0.2s;
+}
+
+.timetable-table thead th {
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05em;
+    border-bottom: 2px solid #e3e6f0;
+    letter-spacing: 0.5px;
+}
+
+.timetable-table tbody tr:nth-child(even) td {
+    background-color: #f1f5fa;
+}
+
+.timetable-table tbody tr:hover td {
+    background: #e3f0ff;
+}
+
+.timetable-table td {
+    vertical-align: top;
+    border-radius: 0;
+    background: #f9fafc;
+    font-size: 0.98em;
+    box-shadow: none;
+}
+
+.timetable-table td:first-child {
+    background: #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    font-size: 1em;
+}
+
+.period-subject {
+    font-weight: 600;
+    color: #3b82f6;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+.period-teacher {
+    font-size: 0.92em;
+    color: #6366f1;
+    margin-bottom: 2px;
 }
 
 .period-time {
+    font-size: 0.85em;
+    color: #888;
+}
+
+@media (max-width: 900px) {
+  .timetable-table th, .timetable-table td {
+    min-width: 80px;
+    font-size: 0.92em;
+    padding: 7px 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .timetable-header h1 {
+    font-size: 1.2rem;
+  }
+  .timetable-table th, .timetable-table td {
+    min-width: 60px;
+    font-size: 0.85em;
+    padding: 5px 1px;
+  }
+}
+
+.timetable-card-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 28px 18px 32px 18px;
+  margin-bottom: 32px;
+  border: 1px solid #e5e7eb;
+}
+
+.timetable-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.periods-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 18px;
+  padding-bottom: 10px;
+  scrollbar-color: #d1d5db #f3f4f6;
+  scrollbar-width: thin;
+}
+.periods-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.periods-scroll-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 8px;
+}
+.periods-scroll-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.period-view-card {
+  min-width: 150px;
+  max-width: 170px;
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  padding: 22px 16px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+.period-view-card:hover {
+  box-shadow: 0 4px 16px rgba(80,120,255,0.08);
+  border-color: #b3bcf5;
+}
+.period-view-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
+}
+.period-view-subject {
+  font-size: 1.05rem;
   font-weight: 600;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.period-name {
-  display: block;
-}
-
-.period-class-name {
-  font-size: 0.85rem;
-  color: var(--secondary-text);
-  font-style: italic;
-}
-
-.no-periods {
+  color: #3b82f6;
+  margin-bottom: 4px;
   text-align: center;
-  color: var(--secondary-text);
-  font-size: 0.9rem;
+}
+.period-view-teacher {
+  font-size: 0.97rem;
+  color: #6366f1;
+  margin-bottom: 2px;
+  text-align: center;
+}
+.period-view-time {
+  font-size: 0.92rem;
+  color: #888;
+  text-align: center;
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
-  .weekly-view {
-    grid-template-columns: repeat(4, 1fr);
+.timetable-day-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+  margin-bottom: 18px;
+  padding: 0 2px;
+  gap: 0;
+}
+.timetable-day-tabs::-webkit-scrollbar {
+  height: 5px;
+}
+.timetable-day-tabs::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+.timetable-day-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+.day-tab {
+  flex: 1 0 80px;
+  padding: 16px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #222;
+  border-radius: 0;
+  border-right: 1.5px solid #e5e7eb;
+  background: transparent;
+  transition: background 0.18s, color 0.18s;
+}
+.day-tab:last-child {
+  border-right: none;
+}
+.day-tab.active {
+  background: #fff;
+  color: #2563eb;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(80,120,255,0.04);
+  z-index: 1;
+}
+.day-tab:hover:not(.active) {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+
+@media (max-width: 700px) {
+  .timetable-card-container {
+    padding: 12px 2px 18px 2px;
+    border-radius: 8px;
   }
-}
-
-@media (max-width: 768px) {
-  .weekly-view {
-    grid-template-columns: repeat(2, 1fr);
+  .period-view-card {
+    min-width: 120px;
+    max-width: 140px;
+    padding: 14px 7px 12px 7px;
   }
-}
-
-@media (max-width: 480px) {
-  .weekly-view {
-    grid-template-columns: 1fr;
+  .timetable-day-tabs {
+    border-radius: 7px;
+    font-size: 0.97rem;
+  }
+  .day-tab {
+    font-size: 0.97rem;
+    padding: 10px 0;
   }
 } 

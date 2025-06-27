@@ -1,0 +1,120 @@
+.day-editor-container {
+  padding: 1.5rem;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.day-editor-container h3 {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.periods-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.periods-edit-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--background-color-light);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.periods-edit-table th, .periods-edit-table td {
+  padding: 0.9rem 0.7rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.periods-edit-table th {
+  background: var(--background-color-dark);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.periods-edit-table tr:last-child td {
+  border-bottom: none;
+}
+
+.periods-edit-table input[type="text"] {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.periods-edit-table input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+.remove-period-btn {
+  background: transparent;
+  border: none;
+  color: var(--danger-color);
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-period-btn:hover {
+  background: var(--danger-color-light);
+  color: var(--white);
+}
+
+.add-period-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color-light);
+  border: 1px dashed var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.add-period-btn .bx {
+  font-size: 1.2rem;
+}
+
+.add-period-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .day-editor-container {
+    padding: 1rem;
+  }
+  .periods-edit-table th, .periods-edit-table td {
+    padding: 0.7rem 0.4rem;
+    font-size: 0.97rem;
+  }
+  .add-period-btn {
+    padding: 0.7rem;
+    font-size: 0.97rem;
+  }
+} 

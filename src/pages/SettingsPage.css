@@ -83,7 +83,7 @@
 
 .form-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -96,6 +96,8 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.2s;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .save-settings-btn:hover {

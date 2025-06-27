@@ -22,15 +22,21 @@
 .attendance-action-buttons {
   display: flex;
   gap: 10px;
+  width: 100%;
 }
 
 .attendance-action-buttons button {
-  padding: 6px 12px;
+  flex: 1 1 0;
+  padding: 12px 0;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   cursor: pointer;
   background-color: #f9fafb;
   transition: all 0.2s;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  color: #374151;
 }
 
 .attendance-action-buttons button.active {
@@ -38,19 +44,44 @@
   border-color: transparent;
 }
 
-.present-btn.active { background-color: #10b981; }
-.absent-btn.active { background-color: #ef4444; }
-.late-btn.active { background-color: #f59e0b; }
+.present-btn.active, .present-btn {
+  background-color: #10b981;
+  color: white;
+}
+.absent-btn.active, .absent-btn {
+  background-color: #ef4444;
+  color: white;
+}
+.late-btn.active, .late-btn {
+  background-color: #f59e0b;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .attendance-action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .attendance-action-buttons button {
+    padding: 14px 0;
+    font-size: 1.1rem;
+  }
+}
 
 .finish-attendance-btn {
   margin-top: 20px;
-  padding: 12px 25px;
+  padding: 16px 0;
   font-size: 1.1rem;
   background-color: #4f46e5;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* --- Stats --- */
@@ -76,6 +107,24 @@
   color: #4f46e5;
 }
 
+.stat-percent {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.stat-percent.present {
+  color: #10b981;
+}
+.stat-percent.absent {
+  color: #ef4444;
+}
+.stat-percent.late {
+  color: #f59e0b;
+}
+.stat-percent.total {
+  color: #4f46e5;
+}
+
 .back-to-class-btn {
   margin-top: 30px;
   padding: 12px 25px;
@@ -85,4 +134,86 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+.stat-item.clickable {
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.stat-item.clickable:hover {
+  background: #f3f4f6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.stat-list {
+  margin: 18px auto 0 auto;
+  max-width: 400px;
+  background: #f3f6fd;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(80,120,255,0.07);
+  padding: 16px 18px;
+  font-size: 1rem;
+  border: 1px solid #e0e7ff;
+  min-height: 40px;
+}
+.stat-list ul {
+  margin: 8px 0 0 0;
+  padding: 0 0 0 18px;
+  max-height: 168px;
+  overflow-y: auto;
+}
+.stat-list li {
+  margin-bottom: 4px;
+  color: #374151;
+  font-weight: 500;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(80,120,255,0.04);
+}
+.stat-list li:last-child { margin-bottom: 0; }
+
+.stat-list .present-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  margin-left: 8px;
+}
+.stat-list .absent-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  margin-left: 8px;
+}
+.stat-list .late-btn {
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  margin-left: 8px;
+}
+@media (max-width: 600px) {
+  .stat-list {
+    max-width: 98vw;
+    padding: 12px 6vw;
+    font-size: 0.98rem;
+  }
 } 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AttendanceRecordViewer.css';
 
 const AttendanceRecordViewer = ({ record, onClose, classDetails }) => {
+  const [openList, setOpenList] = useState(null); // 'present' | 'absent' | 'late' | null
   if (!record) return null;
 
   const getStudentName = (studentId) => {
@@ -11,9 +12,15 @@ const AttendanceRecordViewer = ({ record, onClose, classDetails }) => {
 
   const lowerCaseStatus = (status) => status.toLowerCase();
 
-  const presentStudents = record.students.filter(s => lowerCaseStatus(s.status) === 'present');
-  const absentStudents = record.students.filter(s => lowerCaseStatus(s.status) === 'absent');
-  const lateStudents = record.students.filter(s => lowerCaseStatus(s.status) === 'late');
+  const studentsArr = record.students || [];
+  const total = classDetails.students.length;
+  const presentStudents = studentsArr.filter(s => lowerCaseStatus(s.status) === 'present');
+  const absentStudents = studentsArr.filter(s => lowerCaseStatus(s.status) === 'absent');
+  const lateStudents = studentsArr.filter(s => lowerCaseStatus(s.status) === 'late');
+
+  const presentPercent = total ? ((presentStudents.length / total) * 100).toFixed(1) : 0;
+  const absentPercent = total ? ((absentStudents.length / total) * 100).toFixed(1) : 0;
+  const latePercent = total ? ((lateStudents.length / total) * 100).toFixed(1) : 0;
 
   return (
     <div className="record-viewer-backdrop" onClick={onClose}>
@@ -25,26 +32,44 @@ const AttendanceRecordViewer = ({ record, onClose, classDetails }) => {
         <div className="record-viewer-body">
           <p><strong>Date:</strong> {new Date(record.date).toLocaleDateString()}</p>
           <p><strong>Session Type:</strong> {record.type}</p>
-          <div className="status-columns">
-            <div className="status-column">
-              <h4>Present ({presentStudents.length})</h4>
-              <ul>
-                {presentStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}
-              </ul>
-            </div>
-            <div className="status-column">
-              <h4>Absent ({absentStudents.length})</h4>
-              <ul>
-                {absentStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}
-              </ul>
-            </div>
-            <div className="status-column">
-              <h4>Late ({lateStudents.length})</h4>
-              <ul>
-                {lateStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}
-              </ul>
-            </div>
-          </div>
+          {studentsArr.length === 0 ? (
+            <div className="no-attendance-msg">No attendance data available for this session.</div>
+          ) : (
+            <>
+              <div className="modal-stats-grid clickable-stats">
+                <div className={`modal-stat present${openList==='present' ? ' open' : ''}`} onClick={() => setOpenList(openList==='present'?null:'present')}>
+                  <span>{presentStudents.length}</span>
+                  <small>Present</small>
+                  <div className="modal-stat-percent">{presentPercent}%</div>
+                </div>
+                <div className={`modal-stat absent${openList==='absent' ? ' open' : ''}`} onClick={() => setOpenList(openList==='absent'?null:'absent')}>
+                  <span>{absentStudents.length}</span>
+                  <small>Absent</small>
+                  <div className="modal-stat-percent">{absentPercent}%</div>
+                </div>
+                <div className={`modal-stat late${openList==='late' ? ' open' : ''}`} onClick={() => setOpenList(openList==='late'?null:'late')}>
+                  <span>{lateStudents.length}</span>
+                  <small>Late</small>
+                  <div className="modal-stat-percent">{latePercent}%</div>
+                </div>
+              </div>
+              {openList === 'present' && (
+                <div className="modal-student-list"><strong>Present Students:</strong>
+                  <ul>{presentStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}</ul>
+                </div>
+              )}
+              {openList === 'absent' && (
+                <div className="modal-student-list"><strong>Absent Students:</strong>
+                  <ul>{absentStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}</ul>
+                </div>
+              )}
+              {openList === 'late' && (
+                <div className="modal-student-list"><strong>Late Students:</strong>
+                  <ul>{lateStudents.map(s => <li key={s.id}>{getStudentName(s.id)}</li>)}</ul>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -27,9 +27,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/timetable">
-            <i className='bx bx-calendar'></i>
-            <span>My Timetable</span>
+          <NavLink to="/todos">
+            <i className='bx bx-check-square'></i>
+            <span>My Todos</span>
           </NavLink>
         </li>
         <li>

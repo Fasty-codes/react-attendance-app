@@ -1,145 +1,97 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import './TodosPage.css';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import TimetableEditor from '../components/TimetableEditor';
+import './TimetablePage.css';
 
-const TodosPage = () => {
-  const { user } = useContext(AuthContext);
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
-  const [filter, setFilter] = useState('all');
-  const [editingTodoId, setEditingTodoId] = useState(null);
-  const [editingTodoText, setEditingTodoText] = useState('');
+const daysOfWeek = [
+  'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+];
 
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(`todos_${user.id}`)) || [];
-    setTodos(storedTodos);
-  }, [user.id]);
+const TimetablePage = () => {
+    const { classId } = useParams();
+    const [timetable, setTimetable] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [classes, setClasses] = useState([]);
+    const [activeDay, setActiveDay] = useState(daysOfWeek[0]);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    localStorage.setItem(`todos_${user.id}`, JSON.stringify(todos));
-  }, [todos, user.id]);
+    useEffect(() => {
+        const storedClasses = JSON.parse(localStorage.getItem('classes')) || [];
+        setClasses(storedClasses);
+        const currentClass = storedClasses.find(c => c.id === classId);
+        if (currentClass && currentClass.timetable) {
+            setTimetable(currentClass.timetable);
+        } else if (currentClass) {
+            // Initialize with empty timetable if not present
+            const newTimetable = generateEmptyTimetable();
+            setTimetable(newTimetable);
+        } else {
+            setTimetable(null);
+        }
+    }, [classId]);
 
-  const handleAddTodo = (e) => {
-    e.preventDefault();
-    if (newTodo.trim() === '') return;
-    const todo = {
-      id: Date.now(),
-      text: newTodo,
-      completed: false,
+    const generateEmptyTimetable = () => {
+        const days = daysOfWeek;
+        const timetable = {};
+        days.forEach(day => {
+            timetable[day] = [];
+        });
+        return timetable;
     };
-    setTodos([todo, ...todos]);
-    setNewTodo('');
-  };
 
-  const toggleTodo = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
+    const handleSaveTimetable = (newTimetable) => {
+        const updatedClasses = classes.map(c => {
+            if (c.id === classId) {
+                return { ...c, timetable: newTimetable };
+            }
+            return c;
+        });
+        localStorage.setItem('classes', JSON.stringify(updatedClasses));
+        setClasses(updatedClasses);
+        setTimetable(newTimetable);
+        setIsEditing(false);
+    };
 
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-  
-  const startEditing = (todo) => {
-    setEditingTodoId(todo.id);
-    setEditingTodoText(todo.text);
-  };
+    const currentClass = classes.find(c => c.id === classId);
 
-  const saveEdit = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, text: editingTodoText } : todo
-      )
-    );
-    setEditingTodoId(null);
-    setEditingTodoText('');
-  };
-  
-  const handleEditKeyDown = (e, id) => {
-    if (e.key === 'Enter') {
-      saveEdit(id);
-    } else if (e.key === 'Escape') {
-      setEditingTodoId(null);
-      setEditingTodoText('');
-    }
-  };
-
-  const filteredTodos = todos.filter(todo => {
-    if (filter === 'completed') return todo.completed;
-    if (filter === 'active') return !todo.completed;
-    return true;
-  });
-
-  return (
-    <div className="todos-container">
-      <div className="todos-header">
-        <h1>My Todos</h1>
-        <p>Stay organized and on top of your tasks.</p>
-      </div>
-
-      <form onSubmit={handleAddTodo} className="add-todo-form">
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="What needs to be done?"
-          className="todo-input"
-        />
-        <button type="submit" className="add-todo-btn"><i className='bx bx-plus'></i></button>
-      </form>
-
-      <div className="filter-buttons">
-        <button onClick={() => setFilter('all')} className={filter === 'all' ? 'active' : ''}>All</button>
-        <button onClick={() => setFilter('active')} className={filter === 'active' ? 'active' : ''}>Active</button>
-        <button onClick={() => setFilter('completed')} className={filter === 'completed' ? 'active' : ''}>Completed</button>
-      </div>
-
-      <ul className="todo-list">
-        {filteredTodos.length > 0 ? (
-          filteredTodos.map((todo, index) => (
-            <li key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''} ${editingTodoId === todo.id ? 'editing' : ''}`}>
-              {editingTodoId === todo.id ? (
-                <input
-                  type="text"
-                  value={editingTodoText}
-                  onChange={(e) => setEditingTodoText(e.target.value)}
-                  onKeyDown={(e) => handleEditKeyDown(e, todo.id)}
-                  onBlur={() => saveEdit(todo.id)}
-                  className="todo-edit-input"
-                  autoFocus
-                />
-              ) : (
+    // DEBUG: Always show this message to confirm render
+    return (
+        <div className="timetable-page">
+            <div style={{background: 'yellow', color: 'black', padding: 10, fontWeight: 'bold', fontSize: 18, marginBottom: 10}}>
+                DEBUG: TimetablePage is rendering!
+            </div>
+            {!classId && (
+                <div style={{ color: 'red', padding: 30 }}>No class selected. Please select a class first.</div>
+            )}
+            {(!classes || classes.length === 0) && (
+                <div style={{ color: 'red', padding: 30 }}>No classes found. Please create a class first.</div>
+            )}
+            {!currentClass && classId && classes.length > 0 && (
+                <div style={{ color: 'red', padding: 30 }}>Class not found. Please check your class selection.</div>
+            )}
+            {!timetable && classId && currentClass && (
+                <div>Loading timetable...</div>
+            )}
+            {classId && currentClass && timetable && (
                 <>
-                  <div className="todo-content">
-                    <span className="todo-number">{index + 1}.</span>
-                    <span className="todo-checkbox" onClick={() => toggleTodo(todo.id)}>
-                      {todo.completed && <i className='bx bx-check'></i>}
-                    </span>
-                    <span className="todo-text" onClick={() => toggleTodo(todo.id)}>{todo.text}</span>
-                  </div>
-                  <div className="todo-actions">
-                    <button onClick={() => startEditing(todo)} className="edit-todo-btn">
-                      <i className='bx bx-pencil'></i>
-                    </button>
-                    <button onClick={() => deleteTodo(todo.id)} className="delete-todo-btn">
-                      <i className='bx bx-trash'></i>
-                    </button>
-                  </div>
+                    <div className="timetable-header">
+                        <h1>Timetable for {currentClass?.name}</h1>
+                        <button onClick={() => setIsEditing(true)} className="edit-timetable-btn">Edit Timetable</button>
+                    </div>
+                    <div style={{ background: '#fff', borderRadius: 12, padding: 12, minHeight: 300 }}>
+                        <TimetableEditor
+                            timetable={timetable}
+                            onSave={handleSaveTimetable}
+                            readOnly={!isEditing}
+                            activeDay={activeDay}
+                            setActiveDay={setActiveDay}
+                        />
+                    </div>
+                    <button onClick={() => navigate(`/class/${classId}`)} className="back-to-class-btn">Back to Class</button>
                 </>
-              )}
-            </li>
-          ))
-        ) : (
-          <div className="empty-todos-message">
-            <p>No tasks here. Add a new one to get started!</p>
-          </div>
-        )}
-      </ul>
-    </div>
-  );
+            )}
+        </div>
+    );
 };
 
-export default TimeTablePage; 
+export default TimetablePage; 

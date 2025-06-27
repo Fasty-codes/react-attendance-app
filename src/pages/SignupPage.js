@@ -11,30 +11,14 @@ const SignupPage = () => {
   const { signup } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     try {
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      if (users.find(u => u.email === email)) {
-        setError('An account with this email already exists.');
-        return;
-      }
-
-      const newUser = {
-        id: Date.now(),
-        name,
-        email,
-        password, // Note: In a real app, hash this password
-        profilePicture: null
-      };
-
-      const updatedUsers = [...users, newUser];
-      localStorage.setItem('users', JSON.stringify(updatedUsers));
-
-      signup(email, password, name);
-      navigate('/');
+      await signup(email, password, name);
+      navigate('/dashboard');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'An unexpected error occurred. Please try again.');
     }
   };
 

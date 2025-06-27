@@ -49,10 +49,11 @@ const ProfilePage = () => {
           />
           <input type="file" id="profilePicUpload" accept="image/*" onChange={handlePictureChange} style={{display: 'none'}} />
           <label htmlFor="profilePicUpload" className="upload-btn">
-            <i className='bx bx-camera'></i> Change Picture
+            <i className='bx bx-camera'></i>
           </label>
         </div>
         <div className="profile-details-section">
+          <div className="profile-section-header">Profile Details</div>
           <div className="profile-field">
             <label>Name</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={!isEditing} />
@@ -75,9 +76,14 @@ const ProfilePage = () => {
                 <i className='bx bx-pencil'></i> Edit Profile
               </button>
             ) : (
-              <button onClick={handleSave} className="save-profile-btn">
-                <i className='bx bx-save'></i> Save Changes
-              </button>
+              <>
+                <button onClick={handleSave} className="save-profile-btn">
+                  <i className='bx bx-save'></i> Save Changes
+                </button>
+                <button onClick={() => setIsEditing(false)} className="cancel-profile-btn">
+                  Cancel
+                </button>
+              </>
             )}
           </div>
         </div>

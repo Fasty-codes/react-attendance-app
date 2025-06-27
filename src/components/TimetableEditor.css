@@ -1,131 +1,237 @@
-.timetable-container {
-  animation: fadeIn 0.5s ease-in-out;
+.timetable-editor-page {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 32px 24px 24px 24px;
+  max-width: 1100px;
+  margin: 32px auto;
 }
 
-.day-selector {
+.timetable-day-tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  background-color: #e5e7eb;
-  padding: 5px;
-  border-radius: 8px;
+  gap: 18px;
+  background: #edeff3;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  overflow-x: auto;
 }
 
-.day-btn {
-  flex: 1;
-  padding: 10px;
+.day-tab {
+  background: none;
   border: none;
-  background-color: transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.day-btn.active {
-  background-color: #ffffff;
-  color: #4f46e5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.timetable-editor {
-  background-color: #ffffff;
-  padding: 20px;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 8px 22px;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.day-tab.active {
+  background: #2563eb;
+  color: #fff;
+}
+.day-tab:hover:not(.active) {
+  background: #dbeafe;
 }
 
-.timetable-table {
+.timetable-editor-content {
+  margin-top: 8px;
+}
+
+.timetable-day-label {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 18px;
+}
+
+.timetable-editor-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #f9fafb;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
-
-.timetable-table th, .timetable-table td {
-  padding: 12px 15px;
+.timetable-editor-table th, .timetable-editor-table td {
+  padding: 12px 10px;
   text-align: left;
+  border-bottom: 1px solid #e5e7eb;
 }
-
-.timetable-table th {
-  border-bottom: 2px solid #e5e7eb;
+.timetable-editor-table th {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05em;
 }
-
-.timetable-table td {
-  border-bottom: 1px solid #f3f4f6;
+.timetable-editor-table tr:last-child td {
+  border-bottom: none;
 }
-
-.timetable-table input[type="text"],
-.timetable-table input[type="time"] {
+.timetable-editor-table input[type="text"] {
   width: 100%;
-  padding: 8px;
-  border: 1px solid transparent;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
-  transition: border-color 0.3s;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+  transition: border 0.2s;
 }
-
-.timetable-table input:focus {
+.timetable-editor-table input[type="text"]:focus {
+  border: 1.5px solid #2563eb;
   outline: none;
-  border-color: #4f46e5;
 }
-
 .remove-period-btn {
   background: none;
   border: none;
   color: #ef4444;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: background 0.2s;
 }
-
 .remove-period-btn:hover {
-  opacity: 1;
+  background: #fee2e2;
 }
-
-.add-period-btn {
-  margin-top: 15px;
-}
-
-.timetable-actions {
+.timetable-editor-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  gap: 18px;
+  margin-top: 18px;
 }
-
-.add-period-btn, .save-timetable-btn {
-  background-color: var(--accent-color);
-  color: white;
+.add-period-btn {
+  background: #2563eb;
+  color: #fff;
   border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1rem;
 }
-
-.save-container {
-  position: relative;
+.add-period-btn:hover {
+  background: #1d4ed8;
+}
+.save-timetable-btn {
+  background: #0284c7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
+}
+.save-timetable-btn:hover {
+  background: #0369a1;
+}
+@media (max-width: 700px) {
+  .timetable-editor-page {
+    padding: 12px 2px 18px 2px;
+  }
+  .timetable-day-label {
+    font-size: 1.2rem;
+  }
+  .timetable-editor-table th, .timetable-editor-table td {
+    padding: 7px 3px;
+    font-size: 0.95em;
+  }
+  .add-period-btn, .save-timetable-btn {
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
+  .timetable-editor-actions {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
 }
 
-.saved-message {
-  color: var(--success-color);
-  font-weight: bold;
-  animation: fadeInOut 2s ease-in-out;
+.timetable-days-overview {
+  display: flex;
+  gap: 18px;
+  margin: 18px 0 24px 0;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-color: #d1d5db #f3f4f6;
+  scrollbar-width: thin;
+  width: 100%;
 }
-
-@keyframes fadeInOut {
-  0% { opacity: 0; }
-  25% { opacity: 1; }
-  75% { opacity: 1; }
-  100% { opacity: 0; }
+.timetable-days-overview::-webkit-scrollbar {
+  height: 7px;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.timetable-days-overview::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 8px;
+}
+.timetable-days-overview::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+.day-overview-box {
+  min-width: 130px;
+  max-width: 160px;
+  flex: 0 0 130px;
+  background: #f3f6fd;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px 10px 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2563eb;
+  user-select: none;
+}
+.day-overview-box.active {
+  border: 2.5px solid #2563eb;
+  background: #e0e7ff;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  color: #1d4ed8;
+}
+.day-overview-box:hover:not(.active) {
+  border: 2px solid #60a5fa;
+  background: #f0f7ff;
+}
+.day-overview-name {
+  font-weight: 700;
+  color: inherit;
+  font-size: 1.08rem;
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .timetable-days-overview {
+    gap: 10px;
+    margin: 12px 0 18px 0;
+    padding-bottom: 4px;
+  }
+  .day-overview-box {
+    min-width: 100px;
+    max-width: 120px;
+    flex: 0 0 100px;
+    padding: 12px 4px 10px 4px;
+    font-size: 1rem;
+  }
+  .day-overview-name {
+    font-size: 1rem;
+  }
 } 

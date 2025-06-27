@@ -1,0 +1,210 @@
+.todos-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 25px;
+  background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.todos-header {
+  text-align: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+.todos-header h1 {
+  color: var(--primary-text);
+}
+.todos-header p {
+  color: var(--secondary-text);
+  font-size: 1rem;
+}
+
+.add-todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.todo-input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  transition: border-color 0.2s;
+}
+.todo-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+.add-todo-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  font-size: 1.5rem;
+}
+.add-todo-btn:hover {
+  background-color: var(--accent-color-dark);
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.filter-buttons button {
+  background: var(--primary-bg);
+  color: var(--secondary-text);
+  border: 1.5px solid var(--border-color);
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-buttons button.active {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.todo-item {
+  padding: 12px 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  background-color: var(--primary-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  animation: slideIn 0.4s ease-out;
+}
+.todo-item:hover .todo-actions {
+  opacity: 1;
+}
+.todo-item.completed {
+  background-color: #f3f4f6;
+  border-color: #e5e7eb;
+}
+.todo-content {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+.todo-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.todo-item.completed .todo-checkbox {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+.todo-checkbox i {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.todo-number {
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+.todo-item.completed .todo-number {
+  color: var(--secondary-text);
+}
+.todo-text {
+  color: var(--primary-text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--secondary-text);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.edit-todo-btn, .delete-todo-btn {
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transition: all 0.2s;
+}
+.edit-todo-btn:hover {
+  background: var(--accent-color-light);
+  color: var(--accent-color);
+}
+.delete-todo-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.todo-edit-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1.5px solid var(--accent-color);
+  border-radius: 8px;
+  background: var(--accent-color-light);
+  color: var(--primary-text);
+}
+
+.empty-todos-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--secondary-text);
+  background: rgba(0,0,0,0.02);
+  border-radius: 8px;
+}
+.empty-todos-message p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .todos-container {
+    padding: 15px;
+    margin: 10px;
+  }
+} 

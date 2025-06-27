@@ -51,11 +51,11 @@ const StudentEditModal = ({ isOpen, onClose, onSave, student }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="student-edit-modal">
+      <div className="student-edit-modal compact">
         <h2>{isEditMode ? 'Edit Student' : 'Add New Student'}</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-grid">
-            <div className="full-width photo-section">
+          <div className="form-grid compact-grid">
+            <div className="photo-section">
               <div className="photo-preview" style={{ backgroundImage: `url(${formData.photo})` }}>
                 {!formData.photo && <i className='bx bxs-user'></i>}
               </div>
@@ -78,25 +78,27 @@ const StudentEditModal = ({ isOpen, onClose, onSave, student }) => {
                 </div>
               )}
             </div>
-            <div className="form-group">
-              <label>Full Name</label>
-              <input type="text" name="name" value={formData.name || ''} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <label>Register No. (Required)</label>
-              <input type="text" name="regNo" value={formData.regNo || ''} onChange={handleChange} required />
-            </div>
-            <div className="full-width form-group">
-              <label>Address</label>
-              <input type="text" name="address" value={formData.address || ''} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <label>Contact No. (Required)</label>
-              <input type="tel" name="contact" value={formData.contact || ''} onChange={handleChange} required />
+            <div className="fields-section">
+              <div className="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" value={formData.name || ''} onChange={handleChange} />
+              </div>
+              <div className="form-group">
+                <label>Register No. (Required)</label>
+                <input type="text" name="regNo" value={formData.regNo || ''} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Contact No. (Required)</label>
+                <input type="tel" name="contact" value={formData.contact || ''} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Address</label>
+                <input type="text" name="address" value={formData.address || ''} onChange={handleChange} />
+              </div>
             </div>
           </div>
           <div className="modal-actions">
-            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="button" className="cancel-btn" onClick={onClose}>Cancel</button>
             <button type="submit" className="save-btn">Save</button>
           </div>
         </form>

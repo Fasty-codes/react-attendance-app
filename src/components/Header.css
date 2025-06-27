@@ -47,4 +47,45 @@
 .user-profile-link {
   display: flex;
   align-items: center;
+}
+
+.theme-toggle {
+  background: var(--secondary-bg);
+  border: 1.5px solid var(--border-color);
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 4px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.dark .theme-toggle-icon {
+  left: calc(100% - 24px);
+  background: #f9ca24;
+}
+
+.theme-toggle i {
+  color: white;
+}
+.dark .theme-toggle-icon i {
+  color: #1a1a2e;
 } 

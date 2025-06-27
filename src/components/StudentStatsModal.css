@@ -1,0 +1,96 @@
+.student-stats-modal {
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+}
+.student-stats-modal h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary-text);
+}
+.student-stats-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 1.1rem;
+}
+.student-stat {
+  flex: 1;
+  background: #f3f4f6;
+  border-radius: 8px;
+  text-align: center;
+  padding: 12px 0 10px 0;
+  color: #222;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.student-stat.present {
+  background: linear-gradient(135deg, #28a74522, #b9f6ca);
+  color: #208a38;
+}
+.student-stat.absent {
+  background: linear-gradient(135deg, #dc354522, #ffcdd2);
+  color: #b02a37;
+}
+.student-stat.late {
+  background: linear-gradient(135deg, #ffc10722, #fff9c4);
+  color: #b28704;
+}
+.student-stat span {
+  font-size: 1.4rem;
+  display: block;
+}
+.student-stat small {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.student-stat-percent {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 500;
+}
+.student-stats-meta {
+  margin-top: 0.7rem;
+  color: var(--secondary-text);
+  font-size: 1rem;
+}
+@media (max-width: 600px) {
+  .student-stats-grid {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.student-stats-4box {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 1.1rem;
+}
+.student-stats-4box .student-stat {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 0 8px 0;
+  font-size: 0.98rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #222;
+  font-weight: 600;
+  text-align: center;
+}
+.student-stats-4box .student-stat.sessions {
+  background: linear-gradient(135deg, #4f46e522, #c7d2fe);
+  color: #3730a3;
+}
+@media (max-width: 600px) {
+  .student-stats-4box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .student-stats-4box .student-stat {
+    font-size: 0.97rem;
+    padding: 9px 0 7px 0;
+  }
+} 

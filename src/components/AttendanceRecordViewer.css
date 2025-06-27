@@ -1,5 +1,5 @@
 .record-viewer-backdrop {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,11 +19,12 @@
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 600px;
   transform: scale(0.95);
   animation: scaleIn 0.3s forwards;
   max-height: 90vh;
   overflow-y: auto;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .record-viewer-header {
@@ -31,28 +32,44 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 1rem;
+  padding: 1rem 1.5rem;
   margin-bottom: 1rem;
+  background: var(--accent-color);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-sizing: border-box;
+  color: white;
 }
 
 .record-viewer-header h2 {
   margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.3rem;
+  color: white;
+  overflow-wrap: anywhere;
 }
 
-.close-btn {
+.record-viewer-header .close-btn {
   background: transparent;
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: #888;
+  color: white;
   padding: 0;
   line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
 }
 
-.close-btn:hover {
-  color: #333;
+.record-viewer-header .close-btn:hover {
+  opacity: 1;
+}
+
+.record-viewer-body {
+  background: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-sizing: border-box;
+  padding: 1.5rem;
 }
 
 .record-viewer-body p {
@@ -84,7 +101,8 @@
   margin-bottom: 1rem;
   color: #333;
   border-bottom: 2px solid;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.1rem;
 }
 
 .status-column:nth-child(1) h4 { border-color: #28a745; } /* Present */
@@ -95,18 +113,23 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 200px;
+  max-height: 180px;
   overflow-y: auto;
 }
 
 .status-column li {
-  padding: 0.5rem;
+  padding: 0.6rem 0.75rem;
   border-bottom: 1px solid #eee;
   color: #555;
+  font-weight: 500;
 }
 
 .status-column li:last-child {
   border-bottom: none;
+}
+
+.status-column li:nth-child(even) {
+  background-color: var(--secondary-bg);
 }
 
 @keyframes fadeIn {
@@ -117,8 +140,85 @@
   to { transform: scale(1); }
 }
 
-@media (max-width: 768px) {
-  .status-columns {
-    flex-direction: column;
-  }
+.modal-stats-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+}
+.modal-stat {
+  flex: 1;
+  background: #f3f4f6;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px 0 8px 0;
+  color: #222;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.modal-stat.present {
+  background: linear-gradient(135deg, #28a74522, #b9f6ca);
+  color: #208a38;
+}
+.modal-stat.absent {
+  background: linear-gradient(135deg, #dc354522, #ffcdd2);
+  color: #b02a37;
+}
+.modal-stat.late {
+  background: linear-gradient(135deg, #ffc10722, #fff9c4);
+  color: #b28704;
+}
+.modal-stat span {
+  font-size: 1.5rem;
+  display: block;
+}
+.modal-stat small {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.modal-stat-percent {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 500;
+}
+.no-attendance-msg {
+  text-align: center;
+  color: #b91c1c;
+  font-weight: 600;
+  margin: 1.5rem 0;
+}
+
+.clickable-stats .modal-stat {
+  cursor: pointer;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  border: 2px solid transparent;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.clickable-stats .modal-stat.open, .clickable-stats .modal-stat:hover {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 2px 12px var(--shadow-color);
+  background: #e0e7ff;
+}
+.modal-student-list {
+  margin: 1.2rem 0 0 0;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  text-align: left;
+}
+.modal-student-list strong {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: var(--primary-text);
+}
+.modal-student-list ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.modal-student-list li {
+  margin-bottom: 0.3rem;
+  color: #374151;
+  font-weight: 500;
 } 

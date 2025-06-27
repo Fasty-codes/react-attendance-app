@@ -2,12 +2,8 @@ import React, { useState, useRef } from 'react';
 import Modal from './Modal';
 import './Calendar.css';
 
-const Calendar = ({ attendanceData, events, onAddEvent }) => {
+const Calendar = ({ attendanceData, timetable }) => {
   const [date, setDate] = useState(new Date());
-  const [isEventModalOpen, setEventModalOpen] = useState(false);
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [eventText, setEventText] = useState('');
-  const [popover, setPopover] = useState({ show: false, content: [], x: 0, y: 0 });
   const calendarRef = useRef(null);
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -22,42 +18,15 @@ const Calendar = ({ attendanceData, events, onAddEvent }) => {
   const handlePrevMonth = () => setDate(new Date(year, month - 1, 1));
   const handleNextMonth = () => setDate(new Date(year, month + 1, 1));
 
-  const handleDayClick = (day) => {
-    setSelectedDay(day);
-    setEventModalOpen(true);
-  };
-
-  const handleSaveEvent = () => {
-    if (eventText.trim() && selectedDay) {
-      const eventDate = new Date(year, month, selectedDay).toISOString().split('T')[0];
-      onAddEvent({ date: eventDate, text: eventText });
-      setEventModalOpen(false);
-      setEventText('');
-    }
-  };
-
-  const handleEventMouseEnter = (e, dayEvents) => {
-    const rect = e.target.getBoundingClientRect();
-    const calendarRect = calendarRef.current.getBoundingClientRect();
-    setPopover({
-      show: true,
-      content: dayEvents.map(event => event.title), // Assuming events have a 'title' property
-      x: rect.left - calendarRect.left + rect.width / 2,
-      y: rect.top - calendarRect.top - 10,
-    });
-  };
-
-  const handleEventMouseLeave = () => {
-    setPopover({ show: false, content: [], x: 0, y: 0 });
-  };
-
   const getDayData = (day) => {
     const dateStr = new Date(year, month, day).toISOString().split('T')[0];
     const record = attendanceData.find(r => r.date === dateStr);
-    const dayEvents = events.filter(e => e.date === dateStr);
+    let status = record ? record.type.toLowerCase() : '';
+    let holidayName = record && record.type === 'Holiday' && record.holidayName ? record.holidayName : null;
     return {
-      status: record ? record.type.toLowerCase() : '',
-      events: dayEvents,
+      status,
+      holidayName,
+      record,
     };
   };
 
@@ -67,20 +36,31 @@ const Calendar = ({ attendanceData, events, onAddEvent }) => {
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    const { status, events: dayEvents } = getDayData(day);
+    const { status, holidayName, record } = getDayData(day);
+    const weekDay = new Date(year, month, day).getDay();
+    const dayName = daysOfWeek[weekDay];
+    const periods = timetable && timetable[dayName] ? timetable[dayName] : [];
     calendarDays.push(
-      <div key={day} className={`calendar-day ${status}`} onClick={() => handleDayClick(day)}>
+      <div key={day} className={`calendar-day ${status} ${status === 'holiday' ? 'holiday-special' : ''}`}> 
         <span className="day-number">{day}</span>
-        {status && <span className="day-status">{status.replace(/_/g, ' ')}</span>}
-        {dayEvents.length > 0 && (
-          <div 
-            className="events-list" 
-            onMouseEnter={(e) => handleEventMouseEnter(e, dayEvents)}
-            onMouseLeave={handleEventMouseLeave}
-            onTouchStart={(e) => handleEventMouseEnter(e, dayEvents)} // Basic touch support
-            onTouchEnd={handleEventMouseLeave}
-          >
-            {dayEvents.map(event => <div key={event.id} className="event-dot"></div>)}
+        {status === 'holiday' && (
+          <span className="day-status holiday-label">{(record && record.holidayName) ? record.holidayName : 'Holiday'}</span>
+        )}
+        {status === 'full day' && (
+          <span className="day-status full-label">Full Day</span>
+        )}
+        {status === 'half day' && (
+          <span className="day-status half-label">Half Day</span>
+        )}
+        {status !== 'holiday' && periods.length > 0 && (
+          <div className="periods-list">
+            {periods.map((p, idx) => (
+              <div key={idx} className="period-item">
+                <span className="period-time">{p.time}</span>
+                <span className="period-subject">{p.subject}</span>
+                <span className="period-teacher">{p.teacher}</span>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -89,13 +69,6 @@ const Calendar = ({ attendanceData, events, onAddEvent }) => {
 
   return (
     <div className="calendar-container" ref={calendarRef}>
-      {popover.show && (
-        <div className="event-popover" style={{ top: popover.y, left: popover.x }}>
-          <ul>
-            {popover.content.map((text, index) => <li key={index}>{text}</li>)}
-          </ul>
-        </div>
-      )}
       <div className="calendar-header">
         <button onClick={handlePrevMonth}>&lt;</button>
         <h2>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
@@ -105,17 +78,6 @@ const Calendar = ({ attendanceData, events, onAddEvent }) => {
         {daysOfWeek.map(day => <div key={day} className="calendar-day-name">{day}</div>)}
         {calendarDays}
       </div>
-      <Modal isOpen={isEventModalOpen} onClose={() => setEventModalOpen(false)}>
-        <div className="event-modal">
-          <h3>Add Event for {selectedDay && new Date(year, month, selectedDay).toLocaleDateString()}</h3>
-          <textarea
-            placeholder="Event details..."
-            value={eventText}
-            onChange={(e) => setEventText(e.target.value)}
-          />
-          <button onClick={handleSaveEvent}>Save Event</button>
-        </div>
-      </Modal>
     </div>
   );
 };

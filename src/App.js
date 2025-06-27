@@ -12,7 +12,6 @@ import AttendancePage from './pages/AttendancePage';
 import StudentManagementPage from './pages/StudentManagementPage';
 import ProfilePage from './pages/ProfilePage';
 import ReportsPage from './pages/ReportsPage';
-import TimetablePage from './pages/TimetablePage';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 import { ThemeContext, ThemeProvider } from './context/ThemeContext';
 import { NotificationProvider } from './context/NotificationContext';

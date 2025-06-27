@@ -9,10 +9,11 @@ import DashboardPage from './pages/DashboardPage';
 import ClassDetailsPage from './pages/ClassDetailsPage';
 import AttendancePage from './pages/AttendancePage';
 import StudentManagementPage from './pages/StudentManagementPage';
-import TimetablePage from './pages/TimetablePage';
 import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
 import ProfilePage from './pages/ProfilePage';
+import TodosPage from './pages/TodosPage';
+import TimetablePage from './pages/TimetablePage';
 
 const AppRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -30,9 +31,10 @@ const AppRoutes = () => {
               <Routes>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/class/:classId" element={<ClassDetailsPage />} />
+                <Route path="/class/:classId/timetable" element={<TimetablePage />} />
                 <Route path="/attendance" element={<AttendancePage />} />
                 <Route path="/students" element={<StudentManagementPage />} />
-                <Route path="/timetable" element={<TimetablePage />} />
+                <Route path="/todos" element={<TodosPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
