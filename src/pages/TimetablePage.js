@@ -142,4 +142,4 @@ const TodosPage = () => {
   );
 };
 
-export default TodosPage; 
+export default TimeTablePage; 
