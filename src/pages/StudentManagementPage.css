@@ -51,16 +51,3 @@
   margin-right: 5px;
   cursor: pointer;
 }
-
-@media (max-width: 600px) {
-  .add-student-form form {
-    flex-direction: column;
-  }
-
-  .add-student-form input,
-  .add-student-form button {
-    width: 100%; /* Make them full width */
-    /* Ensure box-sizing is appropriate if not globally set */
-    box-sizing: border-box;
-  }
-}

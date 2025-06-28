@@ -91,20 +91,6 @@
   transition: opacity 0.2s ease;
 }
 
-/* Styles for collapsed sidebar menu items */
-.sidebar.collapsed .sidebar-menu li a {
-  /* Vertically align content (icon) */
-  align-items: center;
-  /* Horizontally center content. Icon width is 30px. Collapsed sidebar is 88px.
-     Padding = (88px - 30px) / 2 = 29px on left/right. Vertical padding is 15px. */
-  padding: 15px 29px;
-  justify-content: center; /* Ensures the icon itself is centered if padding were not exact */
-}
-
-.sidebar.collapsed .sidebar-menu li a i {
-  margin-right: 0; /* Remove margin, as text span is hidden */
-}
-
 .sidebar-footer {
   padding: 20px;
   border-top: 1px solid var(--border-color);

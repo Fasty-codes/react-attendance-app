@@ -131,9 +131,3 @@ body, html, #root {
     width: 88px;
   }
 }
-
-@media (max-width: 480px) {
-  .content {
-    padding: 15px; /* Reduce padding for very small screens */
-  }
-}
