@@ -204,5 +204,10 @@
 
   .class-list {
     grid-template-columns: 1fr;
+    gap: 15px; /* Reduce gap for single column layout */
+  }
+
+  .dashboard-cards {
+    gap: 15px; /* Reduce gap for smaller screens */
   }
 } 
