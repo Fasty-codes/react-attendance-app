@@ -98,10 +98,11 @@ const AttendanceTaker = ({ classDetails, sessionType, onSessionEnd }) => {
     <div className="attendance-container">
       <h1>Take Attendance</h1>
       <h2>{classDetails.name} - {sessionType}</h2>
-      <table className="attendance-taker-table">
-        <thead>
-          <tr>
-            <th>Reg. No.</th>
+      <div className="attendance-table-wrapper">
+        <table className="attendance-taker-table">
+          <thead>
+            <tr>
+              <th>Reg. No.</th>
             <th>Name</th>
             <th>Actions</th>
           </tr>
@@ -128,6 +129,7 @@ const AttendanceTaker = ({ classDetails, sessionType, onSessionEnd }) => {
           ))}
         </tbody>
       </table>
+      </div> {/* Closing attendance-table-wrapper */}
       <button onClick={handleFinish} className="finish-attendance-btn">Finish</button>
     </div>
   );

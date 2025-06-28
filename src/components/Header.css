@@ -88,4 +88,18 @@
 }
 .dark .theme-toggle-icon i {
   color: #1a1a2e;
-} 
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 10px; /* Reduce horizontal padding */
+  }
+
+  .header-left, .header-right {
+    gap: 10px; /* Reduce gap between items */
+  }
+
+  .header-title h1 {
+    font-size: 1rem; /* Reduce font size for the title */
+  }
+}
