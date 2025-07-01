@@ -75,6 +75,9 @@
   display: flex;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .class-details-tabs button {
@@ -87,6 +90,7 @@
   color: var(--secondary-text);
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
+  flex-shrink: 0;
 }
 
 .class-details-tabs button.active {
@@ -570,6 +574,13 @@
   .student-list-table-wrapper {
     overflow-x: auto;
     width: 100%;
+  }
+  .attendance-history-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+  .attendance-history-table {
+    min-width: 600px;
   }
 }
 

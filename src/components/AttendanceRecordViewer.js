@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './AttendanceRecordViewer.css';
+import { SidebarContext } from './AppLayout';
 
 const AttendanceRecordViewer = ({ record, onClose, classDetails }) => {
   const [openList, setOpenList] = useState(null); // 'present' | 'absent' | 'late' | null
+  const { setSidebarCollapsed } = useContext(SidebarContext);
+
+  useEffect(() => {
+    // Only hide sidebar on mobile when popup is open
+    if (record && window.innerWidth <= 700) {
+      setSidebarCollapsed(true);
+    }
+    return () => {
+      if (window.innerWidth <= 700) setSidebarCollapsed(false);
+    };
+  }, [record, setSidebarCollapsed]);
+
   if (!record) return null;
 
   const getStudentName = (studentId) => {

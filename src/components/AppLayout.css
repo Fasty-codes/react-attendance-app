@@ -39,4 +39,17 @@
   .page-content {
     padding: 1.5rem;
   }
+}
+
+@media (max-width: 700px) {
+  .main-content {
+    margin-left: 88px;
+    transition: margin-left 0.3s ease;
+  }
+  .main-content.collapsed {
+    margin-left: 0;
+  }
+  .page-content {
+    padding: 1.1rem;
+  }
 } 

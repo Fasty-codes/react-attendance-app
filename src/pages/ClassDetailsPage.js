@@ -13,9 +13,11 @@ import StudentStatsModal from '../components/StudentStatsModal';
 import EditAttendanceModal from '../components/EditAttendanceModal';
 import TimetableDayEditor from '../components/TimetableDayEditor';
 import InfoModal from '../components/InfoModal';
+import { SidebarContext } from '../components/AppLayout';
 import './ClassDetailsPage.css';
 
 const ClassDetailsPage = () => {
+  const { setSidebarCollapsed } = useContext(SidebarContext);
   const { classId } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -42,6 +44,23 @@ const ClassDetailsPage = () => {
   const [activeTimetableDay, setActiveTimetableDay] = useState('Monday');
   const [studentListModal, setStudentListModal] = useState({ isOpen: false, title: '', students: [] });
   const [holidayName, setHolidayName] = useState('');
+
+  useEffect(() => {
+    // Let AttendanceRecordViewer handle sidebar on mobile
+    if (window.innerWidth <= 700 && viewingAttendanceRecord) return;
+    const anyModalOpen =
+      viewingStudentStats ||
+      editingAttendanceRecord ||
+      studentListModal.isOpen ||
+      isStudentModalOpen ||
+      isModalOpen ||
+      confirmModal.isOpen;
+    if (anyModalOpen) {
+      setSidebarCollapsed(true);
+    } else {
+      setSidebarCollapsed(false);
+    }
+  }, [viewingAttendanceRecord, viewingStudentStats, editingAttendanceRecord, studentListModal.isOpen, isStudentModalOpen, isModalOpen, confirmModal.isOpen, setSidebarCollapsed]);
 
   // Load class and student data from localStorage
   useEffect(() => {

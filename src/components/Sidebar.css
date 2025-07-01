@@ -172,4 +172,10 @@
 
 .sidebar.collapsed .logout-btn span {
   display: none;
+}
+
+@media (max-width: 700px) {
+  .sidebar.collapsed {
+    display: none !important;
+  }
 } 

@@ -202,4 +202,37 @@ input:checked + .slider:before {
   .setting-toggle .switch {
     margin-top: 10px;
   }
+}
+
+@media (max-width: 600px) {
+  .settings-container {
+    padding: 6px;
+    max-width: 100vw;
+  }
+  .settings-card {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    font-size: 0.98rem;
+  }
+  .form-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .save-settings-btn, .clear-data-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    margin-left: 0;
+  }
+  .danger-zone {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 0;
+  }
 } 

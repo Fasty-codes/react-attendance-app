@@ -14,6 +14,23 @@
   }
 }
 
+@media (max-width: 600px) {
+  .reports-container {
+    padding: 8px;
+  }
+  .reports-layout {
+    gap: 10px;
+  }
+  .report-generator-container, .reports-list-container {
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .reports-list {
+    max-height: 45vh;
+    padding-right: 4px;
+  }
+}
+
 .report-generator-container, .reports-list-container {
   background-color: var(--secondary-bg);
   padding: 20px;

@@ -178,4 +178,62 @@ body.dark .calendar-day.holiday {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .calendar-container {
+    padding: 10px;
+  }
+  .calendar-header h2 {
+    font-size: 1rem;
+  }
+  .calendar-grid {
+    gap: 2px;
+  }
+  .calendar-day {
+    height: 60px;
+    font-size: 0.8rem;
+    padding: 3px;
+  }
+  .calendar-day-name {
+    font-size: 0.85rem;
+    padding-bottom: 6px;
+    min-width: 0;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar-container {
+    padding: 4px;
+  }
+  .calendar-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .calendar-header h2 {
+    font-size: 0.95rem;
+  }
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+  }
+  .calendar-day {
+    height: 38px;
+    font-size: 0.7rem;
+    padding: 2px;
+  }
+  .calendar-day .day-status {
+    font-size: 0.65rem;
+    padding: 1px 2px;
+  }
+  .calendar-day-name {
+    font-size: 0.7rem;
+    padding-bottom: 3px;
+    min-width: 0;
+    white-space: nowrap;
+    text-align: center;
+  }
 } 

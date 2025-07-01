@@ -13,6 +13,7 @@ const DashboardPage = () => {
   const [time, setTime] = useState(new Date());
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [timeFormat, setTimeFormat] = useState(() => localStorage.getItem('timeFormat') || '12h');
+  const [openAttendanceList, setOpenAttendanceList] = useState({});
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -106,28 +107,76 @@ const DashboardPage = () => {
       </div>
 
       <div className="class-list">
-        {classes.map((c) => (
-          <div key={c.id} className="class-card">
-            <div className="class-card-header">
-              <h3>{c.name}</h3>
-              <div className="class-settings">
-                <button className="settings-btn" onClick={() => toggleDropdown(c.id)}>
-                  <i className='bx bx-cog'></i>
-                </button>
-                <div className={`settings-dropdown ${activeDropdown === c.id ? 'active' : ''}`}>
-                  <Link to={`/class/${c.id}`}>Manage Students</Link>
-                  <a href="#" onClick={(e) => { e.preventDefault(); handleDeleteClass(c.id); }}>Delete Class</a>
+        {classes.map((c) => {
+          // Find today's attendance record
+          const todayStr = new Date().toISOString().slice(0, 10);
+          const todayAttendance = (c.attendance || []).find(r => r.date === todayStr);
+          let present = 0, absent = 0, late = 0;
+          let presentList = [], absentList = [], lateList = [];
+          if (todayAttendance && todayAttendance.students) {
+            present = todayAttendance.students.filter(s => s.status === 'present').length;
+            absent = todayAttendance.students.filter(s => s.status === 'absent').length;
+            late = todayAttendance.students.filter(s => s.status === 'late').length;
+            presentList = todayAttendance.students.filter(s => s.status === 'present');
+            absentList = todayAttendance.students.filter(s => s.status === 'absent');
+            lateList = todayAttendance.students.filter(s => s.status === 'late');
+          }
+          return (
+            <div key={c.id} className="class-card">
+              <div className="class-card-header">
+                <h3>{c.name}</h3>
+                <div className="class-settings">
+                  <button className="settings-btn" onClick={() => toggleDropdown(c.id)}>
+                    <i className='bx bx-cog'></i>
+                  </button>
+                  <div className={`settings-dropdown ${activeDropdown === c.id ? 'active' : ''}`}>
+                    <Link to={`/class/${c.id}`}>Manage Students</Link>
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleDeleteClass(c.id); }}>Delete Class</a>
+                  </div>
                 </div>
               </div>
+              <div className="class-card-body">
+                <p>{c.students.length} Students</p>
+                {todayAttendance ? (
+                  <div className="today-attendance-card">
+                    <div className="today-attendance-title">Today's Attendance</div>
+                    <div className="today-attendance-stats">
+                      <span className="present clickable" onClick={() => setOpenAttendanceList(openAttendanceList[c.id] === 'present' ? { ...openAttendanceList, [c.id]: null } : { ...openAttendanceList, [c.id]: 'present' })}>
+                        Present: {present}
+                      </span>
+                      <span className="absent clickable" onClick={() => setOpenAttendanceList(openAttendanceList[c.id] === 'absent' ? { ...openAttendanceList, [c.id]: null } : { ...openAttendanceList, [c.id]: 'absent' })}>
+                        Absent: {absent}
+                      </span>
+                      <span className="late clickable" onClick={() => setOpenAttendanceList(openAttendanceList[c.id] === 'late' ? { ...openAttendanceList, [c.id]: null } : { ...openAttendanceList, [c.id]: 'late' })}>
+                        Late: {late}
+                      </span>
+                    </div>
+                    {openAttendanceList[c.id] === 'present' && (
+                      <div className="attendance-names-list"><strong>Present:</strong>
+                        <ul>{presentList.length === 0 ? <li>None</li> : presentList.map(s => <li key={s.id}>{(c.students.find(stu => stu.id === s.id) || {}).name || s.name || s.id}</li>)}</ul>
+                      </div>
+                    )}
+                    {openAttendanceList[c.id] === 'absent' && (
+                      <div className="attendance-names-list"><strong>Absent:</strong>
+                        <ul>{absentList.length === 0 ? <li>None</li> : absentList.map(s => <li key={s.id}>{(c.students.find(stu => stu.id === s.id) || {}).name || s.name || s.id}</li>)}</ul>
+                      </div>
+                    )}
+                    {openAttendanceList[c.id] === 'late' && (
+                      <div className="attendance-names-list"><strong>Late:</strong>
+                        <ul>{lateList.length === 0 ? <li>None</li> : lateList.map(s => <li key={s.id}>{(c.students.find(stu => stu.id === s.id) || {}).name || s.name || s.id}</li>)}</ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="today-attendance-card no-attendance">No attendance for today</div>
+                )}
+              </div>
+              <div className="class-card-footer">
+                <Link to={`/class/${c.id}`} className="view-class-btn">View Class</Link>
+              </div>
             </div>
-            <div className="class-card-body">
-              <p>{c.students.length} Students</p>
-            </div>
-            <div className="class-card-footer">
-              <Link to={`/class/${c.id}`} className="view-class-btn">View Class</Link>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
